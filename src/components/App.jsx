@@ -8,21 +8,34 @@ export const App = () => {
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
+  // const incrementOnClickBtn = option => {
+  //   switch (option) {
+  //     case 'good':
+  //       setGood(prevState => prevState + 1);
+  //       break;
+  //     case 'neutral':
+  //       setNeutral(prevState => prevState + 1);
+  //       break;
+  //     case 'bad':
+  //       setBad(prevState => prevState + 1);
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // };
   const incrementOnClickBtn = option => {
-    switch (option) {
-      case 'good':
-        setGood(prevState => prevState + 1);
-        break;
-      case 'neutral':
-        setNeutral(prevState => prevState + 1);
-        break;
-      case 'bad':
-        setBad(prevState => prevState + 1);
-        break;
-      default:
-        break;
+    const optionHandlers = {
+      good: setGood,
+      neutral: setNeutral,
+      bad: setBad,
+    };
+
+    const handler = optionHandlers[option];
+    if (handler) {
+      handler(prevState => prevState + 1);
     }
   };
+
 
   const countTotalFeedback = () => good + neutral + bad;
 
